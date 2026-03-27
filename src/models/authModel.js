@@ -32,12 +32,19 @@ const authSchema=new mongoose.Schema({
 
   otpExpiry: {
     type: Date
-  }
-},{timestamps:true});
- 
+  },
+   refreshToken: {
+        type: String,
+        default: null
+    } //user can have only one refresh token at a time, if user login from another device then previous refresh token will be invalidated
 
- //pre save hook for hashing password
+    //refreshTokens: [String]--> for multiple refresh tokens if user login from multiple devices
+
+},{timestamps:true});
+
+//pre save hook for hashing password
 authSchema.pre('save',async function(){
+   if (!this.isModified('password')) return;
     this.password=await bcrypt.hash(this.password,12);
 })
 

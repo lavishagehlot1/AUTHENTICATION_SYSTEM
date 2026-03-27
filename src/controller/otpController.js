@@ -45,3 +45,26 @@ export const verifyOtp=async(req,res,next)=>{
         next(err);
     }
 }
+
+export const forgetPassword=async(req,res,next)=>{
+    try{
+        const {userEmail}=req.body;
+        console.log("Data from postman",req.body);
+        if(!userEmail) return appError(res,statusCodes.BAD_REQUEST,"Email is required");
+
+        //find user with email
+        const existingUser=await user.findOne(userEmail);
+        if(!existingUser) return appError(res,statusCodes.NOT_FOUND,'User not found with this email');
+
+        //generate token for password reset
+        const resetToken=crypto.randomBytes(32).toString('hex');
+
+        const hashedToken=crypto.createHash('sha256').update(resetToken).digest('hex');
+
+        
+
+    }catch(err){
+        console.log("Server error:",err.name,err.message);
+        next(err);
+    }
+}
