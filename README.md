@@ -78,28 +78,28 @@ project-root/
 ├─ src/
 │   │
 │   ├─ config/
-│   │   └─ db.js                          # MongoDB connection and config
+│   │   └─ db.js                                     # MongoDB connection and config
 │   │
 │   ├─ controllers/
-│   │   ├─ authController.js              # Registration, login, logout, refresh, forgot/reset password
-│   │   └─ otpController.js               # OTP verification and resend
+│   │   ├─ authController.js                         # Registration, login, logout, refresh, forgot/reset password
+│   │   └─ otpController.js                          # OTP verification and resend
 │   │
 │   ├─ models/
-│   │   └─ authModel.js                   # User schema
+│   │   └─ authModel.js                              # User schema
 │   │
 │   ├─ routes/
-│   │   ├─ authRoutes.js                  # Routes for authController
-│   │   └─ otpRoutes.js                   # Routes for otpController
+│   │   ├─ authRoutes.js                              # Routes for authController
+│   │   └─ otpRoutes.js                               # Routes for otpController
 │   │
 │   ├─ middleware/
-│   │   ├─ validate.js                    # Joi validation middleware
-│   │   ├─ authMiddleware.js              # JWT authentication middleware
-│   │   └─ globalErrorHandler.js          # Global 500 error handler
+│   │   ├─ validate.js                                # Joi validation middleware
+│   │   ├─ authMiddleware.js                          # JWT authentication middleware
+│   │   └─ globalErrorHandler.js                      # Global 500 error handler
 │   │
 │   ├─ services/
-│   │   ├─ generateToken.js               # JWT token generation
-│   │   ├─ sendEmail.js                   # Nodemailer utility
-│   │   └─ templates/                     # Email templates
+│   │   ├─ generateToken.js                           # JWT token generation
+│   │   ├─ sendEmail.js                               # Nodemailer utility
+│   │   └─ templates/                                 # Email templates
 │   │       ├─ forgotPasswordTemplate.js
 │   │       ├─ passwordResetSuccessTemplate.js
 │   │       ├─ regissterTemplate.js
@@ -107,17 +107,17 @@ project-root/
 │   │       └─ resendOtpTemplate.js
 │   │
 │   ├─ utils/
-│   │   ├─ apiResponse.js                 # Standard API response format
-│   │   ├─ appError.js                    # Custom error handler class
-│   │   ├─ generateOtp.js                 # OTP generation utility
-│   │   └─ statusCodes.js                 # HTTP status codes
+│   │   ├─ apiResponse.js                              # Standard API response format
+│   │   ├─ appError.js                                 # Custom error handler class
+│   │   ├─ generateOtp.js                              # OTP generation utility
+│   │   └─ statusCodes.js                              # HTTP status codes
 │   │
 │   ├─ validation/
-│   │   └─ authValidation.js              # Joi schemas for auth routes
+│   │   └─ authValidation.js                           # Joi schemas for auth routes
 │   │
-│   └─ app.js                              # Express app setup
+│   └─ app.js                                          # Express app setup
 │
-├─ index.js                                # Entry point (starts server from src/app.js)
+├─ index.js                                            # Entry point (starts server from src/app.js)
 ├─ .gitignore
 ├─ package.json
 ├─ package-lock.json
