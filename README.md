@@ -1,6 +1,4 @@
-Absolutely! Here’s the updated **README.md** with the **YOPmail email testing section** included under the setup instructions and notes. You can replace your current README with this version:
 
-````markdown
 # Node.js Authentication System
 
 A complete **Node.js authentication system** with secure user registration, OTP verification, JWT-based login, refresh token mechanism, password reset using crypto tokens, and email notifications.
