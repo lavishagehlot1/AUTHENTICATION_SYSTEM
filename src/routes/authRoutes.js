@@ -2,7 +2,7 @@ import express from 'express';
 import { loginUser, logoutUser, refreshToken, registerUser } from '../controller/authController.js';
 import { validation } from '../middleware/validation.js';
 import { loginSchema, registerationSchema } from '../validations/authValidation.js';
-import { authorization } from '../middleware/authMiddleware.js';
+
 const authRoute=express.Router();
 authRoute.post('/registerUser',
     validation({body:registerationSchema}),
