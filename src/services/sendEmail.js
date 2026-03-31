@@ -2,6 +2,8 @@ import nodemailer from 'nodemailer';
 import { registerTemplate } from './templatess/regissterTemplate.js';
 import { resendOtpTemplate } from './templatess/resendOtpTemplate.js';
 import { registerSuccessTemplate } from './templatess/registrationSuccess.js';
+import { forgotPasswordTemplate } from './templatess/forgotPasswordTemplate.js';
+import passwordResetSuccessTemplate from './templatess/passwordResetSuccessTemplate.js';
 
 const sendEmail = async (to, otp, type = "register", userName = "") => {
   try {
@@ -31,6 +33,14 @@ const sendEmail = async (to, otp, type = "register", userName = "") => {
       case "registrationSuccess":
         html = registerSuccessTemplate(userName, otp);
         subject = "Registration Successful";
+        break;
+      case "forgotPasswordTemplate":
+        html=forgotPasswordTemplate(userName,otp);
+        subject="link sent successfully";
+        break;
+      case "passwordResetSuccessTemplate":
+        html=passwordResetSuccessTemplate(userName);
+        subject="Password update successfully";
         break;
       default:
         html = registerTemplate(userName, otp);

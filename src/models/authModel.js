@@ -36,9 +36,17 @@ const authSchema=new mongoose.Schema({
    refreshToken: {
         type: String,
         default: null
-    } //user can have only one refresh token at a time, if user login from another device then previous refresh token will be invalidated
+    }, //user can have only one refresh token at a time, if user login from another device then previous refresh token will be invalidated
 
     //refreshTokens: [String]--> for multiple refresh tokens if user login from multiple devices
+
+    paswordResetToken:{
+        type:String,
+    },
+    
+    passwordResetTokenExpiry:{
+        type:Date,
+    }
 
 },{timestamps:true});
 
