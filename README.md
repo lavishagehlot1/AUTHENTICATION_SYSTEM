@@ -1,135 +1,142 @@
 
+
 # Node.js Authentication System
 
-A complete **Node.js authentication system** with secure user registration, OTP verification, JWT-based login, refresh token mechanism, password reset using crypto tokens, and email notifications.
+A **full-featured Node.js authentication system** with secure user registration, OTP verification, JWT-based login, refresh tokens, password reset, and email notifications.
 
 ---
 
-##  Tech Stack
+## 🛠 Tech Stack
 
-- **Node.js & Express** – Backend framework  
-- **MongoDB & Mongoose** – Database  
-- **JWT** – Access & refresh tokens  
-- **Crypto** – Secure password reset tokens  
-- **Joi** – Request validation  
-- **Nodemailer** – Email notifications  
-- **HTTP-only cookies** – Secure storage of refresh tokens  
+* **Node.js & Express** – Backend framework
+* **MongoDB & Mongoose** – Database
+* **JWT** – Access & refresh tokens
+* **Crypto** – Secure password reset tokens
+* **Joi** – Request validation
+* **Nodemailer** – Email notifications
+* **HTTP-only cookies** – Secure storage of refresh tokens
 
 ---
 
-##  Features
+## ⚡ Features
 
 1. **User Registration**
-   - Sends OTP via email (10-minute validity)  
-   - Allows resending OTP if not verified  
-   - Sends registration successful email after verification  
+
+   * Sends OTP via email (10-minute validity)
+   * Resends OTP if not verified
+   * Sends registration success email after verification
 
 2. **Login**
-   - Generates **access token** and **refresh token**  
-   - Refresh token stored in DB & sent via HTTP-only cookie  
+
+   * Generates **access token** and **refresh token**
+   * Refresh token stored in DB & sent via HTTP-only cookie
 
 3. **Refresh Token**
-   - `/refresh-token` endpoint issues a new access token when the access token expires  
+
+   * Endpoint issues a new access token when access token expires
 
 4. **Logout**
-   - Clears refresh token in DB, ending the session  
 
-5. **Forgot Password**
-   - Generates secure reset token using `crypto`  
-   - Sends reset link via email (10-minute validity)  
+   * Clears refresh token in DB, ending session
 
-6. **Reset Password**
-   - Compares hashed token from request with DB  
-   - Updates password and clears reset token on success  
-   - Sends confirmation email  
+5. **Forgot & Reset Password**
 
-7. **Verify OTP**
-   - Verifies OTP for registration  
-   - Allows resending OTP without creating duplicate users  
+   * Generates secure reset token
+   * Sends reset link via email (10-minute validity)
+   * Updates password and sends confirmation email
 
-8. **Validation**
-   - Request payloads validated using **Joi** schemas  
+6. **OTP Verification**
 
-9. **Global Error Handling**
-   - Handles server errors (500) via middleware  
+   * Verifies registration OTP
+   * Allows resending OTP
+
+7. **Validation**
+
+   * Payload validation via **Joi**
+
+8. **Global Error Handling**
+
+   * Handles server errors (500) consistently
 
 ---
 
-## ⚡ API Endpoints
+##  API Endpoints
 
-| Method | Endpoint | Description |
-|--------|---------|------------|
-| POST | `/registerUser` | User registration (sends OTP) |
-| POST | `/verify-otp` | Verify OTP for registration |
-| POST | `/resend-otp` | Resend OTP |
-| POST | `/loginUser` | Login (access & refresh tokens) |
-| POST | `/refresh-token` | Generate new access token |
-| POST | `/logoutUser` | Logout, clears refresh token |
-| POST | `/forgotPassword` | Send password reset link |
-| POST | `/resetPassword` | Reset password using token |
+| Method | Endpoint          | Description                            |
+| ------ | ----------------- | -------------------------------------- |
+| POST   | `/registerUser`   | Register user (sends OTP)              |
+| POST   | `/verify-otp`     | Verify OTP                             |
+| POST   | `/resend-otp`     | Resend OTP                             |
+| POST   | `/loginUser`      | Login, receive access & refresh tokens |
+| POST   | `/refresh-token`  | Generate new access token              |
+| POST   | `/logoutUser`     | Logout, clear refresh token            |
+| POST   | `/forgotPassword` | Send password reset link               |
+| POST   | `/resetPassword`  | Reset password using token             |
 
 ---
 
 ##  Project Structure
 
-
+```
 project-root/
 │
 ├─ src/
-│   │
 │   ├─ config/
-│   │   └─ db.js                                     # MongoDB connection and config
-│   │
+│   │   ├─ db.js
+│   │   └─ swagger.js
 │   ├─ controllers/
-│   │   ├─ authController.js                         # Registration, login, logout, refresh, forgot/reset password
-│   │   └─ otpController.js                          # OTP verification and resend
-│   │
+│   │   ├─ authController.js
+│   │   └─ otpController.js
 │   ├─ models/
-│   │   └─ authModel.js                              # User schema
-│   │
+│   │   └─ authModel.js
 │   ├─ routes/
-│   │   ├─ authRoutes.js                              # Routes for authController
-│   │   └─ otpRoutes.js                               # Routes for otpController
-│   │
+│   │   ├─ authRoutes.js
+│   │   └─ otpRoutes.js
 │   ├─ middleware/
-│   │   ├─ validate.js                                # Joi validation middleware
-│   │   ├─ authMiddleware.js                          # JWT authentication middleware
-│   │   └─ globalErrorHandler.js                      # Global 500 error handler
-│   │
+│   │   ├─ validate.js
+│   │   ├─ authMiddleware.js
+│   │   └─ globalErrorHandler.js
 │   ├─ services/
-│   │   ├─ generateToken.js                           # JWT token generation
-│   │   ├─ sendEmail.js                               # Nodemailer utility
-│   │   └─ templates/                                 # Email templates
-│   │       ├─ forgotPasswordTemplate.js
-│   │       ├─ passwordResetSuccessTemplate.js
-│   │       ├─ regissterTemplate.js
-│   │       ├─ registrationSuccess.js
-│   │       └─ resendOtpTemplate.js
-│   │
+│   │   ├─ generateToken.js
+│   │   ├─ sendEmail.js
+│   │   └─ templates/
 │   ├─ utils/
-│   │   ├─ apiResponse.js                              # Standard API response format
-│   │   ├─ appError.js                                 # Custom error handler class
-│   │   ├─ generateOtp.js                              # OTP generation utility
-│   │   └─ statusCodes.js                              # HTTP status codes
-│   │
+│   │   ├─ apiResponse.js
+│   │   ├─ appError.js
+│   │   ├─ generateOtp.js
+│   │   └─ statusCodes.js
 │   ├─ validation/
-│   │   └─ authValidation.js                           # Joi schemas for auth routes
-│   │
-│   └─ app.js                                          # Express app setup
+│   │   └─ authValidation.js
+│   └─ app.js
 │
-├─ index.js                                            # Entry point (starts server from src/app.js)
-├─ .gitignore
+├─ screenShots/                  # Screenshots for README preview
+│   ├─ swagger.png
+│   ├─ register.png
+│   ├─ login.png
+│   ├─ forgotPassword.png
+│   └─ resetPassword.png
+│
+├─ index.js
 ├─ package.json
 ├─ package-lock.json
-├─ LICENSE
 └─ README.md
-````
+```
 
 ---
 
-##  Installation & Setup
+## 📷 Screenshots Preview
 
-1. **Clone the repository**:
+### Swagger UI
+
+![Swagger UI](./screenShots/swagger.png)
+
+### User Registration
+
+![User Registration](./screenShots/register.png)
+
+## ⚙ Installation & Setup
+
+1. **Clone the repo**:
 
 ```bash
 git clone <repo-url>
@@ -142,14 +149,14 @@ cd <project-root>
 npm install
 ```
 
-3. **Create a `.env` file** in the root folder:
+3. **Create `.env` file**:
 
 ```text
 PORT=3000
 MONGO_URI=<your-mongo-uri>
 JWT_SECRET=<your-jwt-secret>
-JWT_ACCESS_EXPIRES=<access-token-expiry>      # Example: 15m
-JWT_REFRESH_EXPIRES=<refresh-token-expiry>    # Example: 7d
+JWT_ACCESS_EXPIRES=15m
+JWT_REFRESH_EXPIRES=7d
 SMTP_HOST=<smtp-host>
 SMTP_PORT=<smtp-port>
 SMTP_USER=<smtp-user>
@@ -163,64 +170,20 @@ CLIENT_URL=<frontend-url>
 npm start
 ```
 
----
+5. **Swagger Documentation** available at:
 
-##  Testing Emails with YOPmail
-
-* Use **YOPmail** for testing email flows like OTPs, password reset links, and registration success emails.
-* Example email: `testuser@yopmail.com`
-* Emails appear instantly at [https://yopmail.com](https://yopmail.com).
-* You don’t need a real mailbox for testing; SMTP credentials (e.g., Gmail, Mailtrap) can be used for development.
-
-> **Tip:** Use the exact YOPmail address in your registration or forgot password request to see the emails.
-
----
-
-##  Token, OTP & Password Reset Flow
-
-
-[ User Registration ]
-       │
-       ├─> Submits registration → Joi validation
-       │
-       ├─> OTP sent to email (10 min)
-       │
-       ├─> Verifies OTP → Registration complete
-       │
-       └─> Registration Success Email sent
-
-[ Login ]
-       │
-       ├─> Access & Refresh tokens created
-       │
-       ├─> Access token used for APIs
-       │
-       └─> Refresh token stored in DB + HTTP-only cookie
-               └─> Used to generate new access token on expiry
-
-[ Forgot Password ]
-       │
-       ├─> Generates secure reset token (hashed in DB)
-       │
-       ├─> Email sent with reset link (10 min validity)
-       │
-       └─> User submits new password + token → Password updated
-               └─> Confirmation email sent
+```
+http://localhost:3000/api-docs
 ```
 
 ---
 
-##  Notes
+## Notes
 
-* All passwords and reset tokens are **hashed securely**.
-* Refresh tokens are **stored in HTTP-only cookies** for security.
-* OTPs and password reset links are valid for **10 minutes only**.
-* **Global error handler** ensures consistent responses for server errors.
-* Validation via **Joi** guarantees correct payloads.
-* **YOPmail** can be used for all email testing during development.
-
----
-
-```
+* Passwords & reset tokens are **hashed securely**
+* Refresh tokens are **HTTP-only cookies**
+* OTPs & reset links are valid for **10 minutes**
+* Use **YOPmail** to test email flows during development
+* Global error handler ensures consistent API responses
 
 
