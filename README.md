@@ -112,9 +112,6 @@ project-root/
 ├─ screenShots/                  # Screenshots for README preview
 │   ├─ swagger.png
 │   ├─ register.png
-│   ├─ login.png
-│   ├─ forgotPassword.png
-│   └─ resetPassword.png
 │
 ├─ index.js
 ├─ package.json
@@ -128,11 +125,11 @@ project-root/
 
 ### Swagger UI
 
-![Swagger UI](./screenShots/swagger.png)
+![Swagger UI](./screenShots/screenShots/swagger.png)
 
 ### User Registration
 
-![User Registration](./screenShots/register.png)
+![User Registration](./screenShots/screenShots/register.png)
 
 ## ⚙ Installation & Setup
 
