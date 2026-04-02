@@ -125,11 +125,11 @@ project-root/
 
 ### Swagger UI
 
-![Swagger UI](./screenShots/screenShots/swagger.png)
+![Swagger UI](./screenShots/screenshots/swagger.png)
 
 ### User Registration
 
-![User Registration](./screenShots/screenShots/register.png)
+![User Registration](./screenShots/screenshots/register.png)
 
 ## ⚙ Installation & Setup
 
