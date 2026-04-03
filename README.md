@@ -6,7 +6,7 @@ A **full-featured Node.js authentication system** with secure user registration,
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 * **Node.js & Express** – Backend framework
 * **MongoDB & Mongoose** – Database
@@ -112,6 +112,12 @@ project-root/
 ├─ screenShots/                  # Screenshots for README preview
 │   ├─ swagger.png
 │   ├─ register.png
+|   |-forgetPassword.png
+|   |-loginUser.png
+|   |-logout.png
+|   |-refreshToken.png
+|   |-verifyOtp-2026-04-02.png
+|   |-resetPassword.png
 │
 ├─ index.js
 ├─ package.json
@@ -130,6 +136,31 @@ project-root/
 ### User Registration
 
 ![User Registration](./screenShots/screenshots/register.png)
+
+### User login 
+
+![User login](./screenShots/screenshots/loginUser.png)
+
+### User logout
+
+![User logout](./screenShots/screenshots/logout.png)
+
+### Refresh token 
+
+![Refresh token](./screenShots/screenshots/refreshToken.png)
+
+### Reset Password
+
+![Reset password](./screenShots/screenshots/resetPassword.png)
+
+### verifyOtp
+
+![verify Otp](./screenShots//screenshots/forgetPassword.png)
+
+### forget Password
+
+![Forget Password](./screenShots/screenshots/forgetPassword.png)
+
 
 ## ⚙ Installation & Setup
 
