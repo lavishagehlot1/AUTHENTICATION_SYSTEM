@@ -155,7 +155,7 @@ project-root/
 
 ### verifyOtp
 
-![verify Otp](./screenShots//screenshots/forgetPassword.png)
+![verify Otp](./screenShots//screenshots/verifyOtp.png)
 
 ### forget Password
 
